@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE HTML>
+<!--
+	Highlights by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Highlights by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="{% static 'jobs_app/assets/css/main.css' %}" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Header -->
+			<section id="header">
+				<header class="major">
+					<h1>Jobs Board</h1>
+					<p>A fun little { responsive } single pager by <a href="http://html5up.net">HTML5 UP</a></p>
+				</header>
+				<div class="container">
+					<ul class="actions">
+						<li><a onclick="showPostForm()" href="#post_form" class="button special scrolly">Add a Job Listing</a></li>
+						<form id="post_form" style="opacity:0; height: 0px; transition: 1s" method="post">
+							{% csrf_token %}
+							<br>
+							<input placeholder="Enter Your Job Title" type="text" name="title">
+								<br>
+							<input placeholder="Enter Your Description" type="text" name="description">
+							<br>
+							<button type="submit">Submit</button>
+						</form>
+					</ul>
+				</div>
+			</section>
+
+		<!-- One -->
+			{% for listing in job_listings %}
+			<section id="one" class="main special">
+				<div class="container">
+					<span class="image fit primary"><img src="{% static 'jobs_app/images/pic01.jpg' %}" alt="" /></span>
+					<div class="content">
+						<header class="major">
+							<h2>{{listing.title}}</h2>
+						</header>
+						<p>{{listing.description}}</p>
+					</div>
+					<a href="#two" class="goto-next scrolly">Next</a>
+				</div>
+			</section>
+			{% endfor %}
+
+
+
+
+		<!-- Footer -->
+			<section id="footer">
+				<div class="container">
+					<header class="major">
+						<h2>Get in touch</h2>
+					</header>
+					<form method="post" action="#">
+						<div class="row uniform">
+							<div class="6u 12u$(xsmall)"><input type="text" name="name" id="name" placeholder="Name" /></div>
+							<div class="6u$ 12u$(xsmall)"><input type="email" name="email" id="email" placeholder="Email" /></div>
+							<div class="12u$"><textarea name="message" id="message" placeholder="Message" rows="4"></textarea></div>
+							<div class="12u$">
+								<ul class="actions">
+									<li><input type="submit" value="Send Message" class="special" /></li>
+								</ul>
+							</div>
+						</div>
+					</form>
+				</div>
+				<footer>
+					<ul class="icons">
+						<li><a href="#" class="icon alt fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="#" class="icon alt fa-facebook"><span class="label">Facebook</span></a></li>
+						<li><a href="#" class="icon alt fa-instagram"><span class="label">Instagram</span></a></li>
+						<li><a href="#" class="icon alt fa-dribbble"><span class="label">Dribbble</span></a></li>
+						<li><a href="#" class="icon alt fa-envelope"><span class="label">Email</span></a></li>
+					</ul>
+					<ul class="copyright">
+						<li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li><li>Demo Images: <a href="http://unsplash.com">Unsplash</a></li>
+					</ul>
+				</footer>
+			</section>
+
+		<!-- Scripts -->
+			<script src="{% static 'jobs_app/assets/js/jquery.min.js' %}"></script>
+			<script src="{% static 'jobs_app/assets/js/jquery.scrollex.min.js' %}"></script>
+			<script src="{% static 'jobs_app/assets/js/jquery.scrolly.min.js' %}"></script>
+			<script src="{% static 'jobs_app/assets/js/skel.min.js' %}"></script>
+			<script src="{% static 'jobs_app/assets/js/util.js' %}"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="{% static 'jobs_app/assets/js/main.js' %}"></script>
+			<script src="{% static 'jobs_app/assets/js/our_custom_script.js' %}" type="text/javascript"></script>
+
+	</body>
+</html>
